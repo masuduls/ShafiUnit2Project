@@ -22,18 +22,17 @@ public class LinearEquationRunner {
         tempString2 = cord2.substring(commaInd + 2, totalInd - 1);
         int parse2X = Integer.parseInt(tempString);
         int parse2Y = Integer.parseInt(tempString2);
-        LinearEquation linear1 = new LinearEquation(parse1X, parse1Y, parse2X, parse2Y);
+        if (parse1X == parse2X) {
+            System.out.println("These points are on a vertical line: x = " + parse1X);
+        } else {
+            LinearEquation linear1 = new LinearEquation(parse1X, parse1Y, parse2X, parse2Y);
 
-        // return
-        System.out.println("The two points are: " + cord1 + " and " + cord2);
-        System.out.println("The equation of the line between these points is: " + linear1.equation());
-        System.out.println("The slope of this line is: " + linear1.slope());
-        System.out.println("The y-intercept of the line is: " + linear1.yIntercept());
-        System.out.println("The distance between the two points is: " + linear1.distance());
-
-        System.out.println("\nEnter a value for x: ");
-        String x = scan.nextLine();
-        int parsedX = Integer.parseInt(x);
-        System.out.println("\nThe point on the line is: ");
+            // return
+            System.out.println(linear1.lineInfo());
+            System.out.print("\nEnter a value for x: ");
+            String x = scan.nextLine();
+            double parsedX = Integer.parseInt(x);
+            System.out.println("\nThe point on the line is: " + linear1.coordinateForX(parsedX));
+        }
     }
 }

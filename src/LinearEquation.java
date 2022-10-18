@@ -21,14 +21,14 @@ public class LinearEquation {
     /* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
        the nearest hundredth */
     public double distance() {
-        return Math.sqrt((Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)));
+        return roundedToHundredth(Math.sqrt((Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2))));
     }
 
 
     /* Calculates and returns the y-intercept of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double yIntercept() {
-        double yInt = y1 - (slope() * x1);
+        double yInt = roundedToHundredth(y1 - (slope() * x1));
         return yInt;
     }
 
@@ -36,7 +36,7 @@ public class LinearEquation {
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double slope() {
-        return ((double) (y2 - y1) / (x2 - x1));
+        return roundedToHundredth((double) (y2 - y1) / (x2 - x1));
     }
 
 
@@ -65,16 +65,17 @@ public class LinearEquation {
                subtraction!
      */
     public String equation() {
-        return "y = " + slope() + "x + " + yIntercept();
+        return "y = " + ((y2 - y1) + "/" + (x2 - x1)) + "x + " + yIntercept();
     }
 
 
     /* Returns a String of the coordinate point on the line that has the given x value, with
        both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
 
-//    public String coordinateForX(double xValue) {
-//
-//    }
+    public String coordinateForX(double xValue) {
+        double yValue = (slope() * xValue) + yIntercept();
+        return "(" + xValue + ", " + yValue + ")";
+    }
 
 
     /* "Helper" method for use elsewhere in your methods; returns the value toRound rounded
@@ -83,7 +84,7 @@ public class LinearEquation {
         HINT:  the Math.round method can help with this!
      */
     public double roundedToHundredth(double toRound) {
-        return Math.round(toRound);
+        return Math.round(toRound * 100) / 100.0;
     }
 
 
@@ -100,6 +101,6 @@ public class LinearEquation {
 
       */
     public String lineInfo() {
-        return "2";
+        return "The two points are: (" + x1 + ", " + y1 + ") and " + "(" + x2 + ", " + y2 + ")\n" + "The equation of the line between these points is: " + equation() + "\nThe slope of this line is: " + slope() + "\nThe y-intercept of the line is: " + yIntercept() + "\nThe distance between the two points is: " + distance();
     }
 }
