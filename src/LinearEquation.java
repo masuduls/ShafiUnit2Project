@@ -66,16 +66,39 @@ public class LinearEquation {
      */
     public String equation() {
         String linearEq = "y = ";
-        return "y = " + ((y2 - y1) + "/" + (x2 - x1)) + "x + " + yIntercept();
-    }
+        if (slope() == 0) {
+            return linearEq += yIntercept();
+        } else if (slope() == 1) {
+            linearEq += "x";
+        } else if (slope() == -1) {
+            linearEq += "-x";
+        } else if (slope() % 1 == 0) {
+            linearEq += (int) slope() + "x";
+        } else if ((y2 - y1) < 0 && (x2 - x1) < 0) {
+            linearEq += Math.abs(y2 - y1) + "/" + Math.abs(x2 - x1) + "x";
+        } else if ((y2 - y1) < 0 || (x2 - x1) < 0) {
+            linearEq += "-" + Math.abs(y2 - y1) + "/" + Math.abs(x2 - x1) + "x";
+        } else {
+            linearEq += (y2 - y1) + "/" + (x2 - x1) + "x";
+        }
+
+        if (yIntercept() == 0) {
+            return linearEq;
+        } else if (yIntercept() > 0) {
+            return linearEq + " + " + yIntercept();
+        } else {
+            return linearEq + " - " + Math.abs(yIntercept());
+        }
+    }   // this checks through every scenario for the slope and y intercept, and then proceeds to change it accordingly (works for all 16 tests)
 
 
-    /* Returns a String of the cordinate point on the line that has the given x value, with
+    /* Returns a String of the coordinate point on the line that has the given x value, with
        both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
 
     public String coordinateForX(double xValue) {
         double yValue = (slope() * xValue) + yIntercept();
-        return "(" + xValue + ", " + yValue + ")";
+        double roundedY = roundedToHundredth(yValue);
+        return "(" + xValue + ", " + roundedY + ")";
     }
 
 

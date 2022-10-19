@@ -5,6 +5,7 @@ public class LinearEquationRunner {
 
         // initialization
         Scanner scan = new Scanner(System.in);
+        System.out.println("Welcome, user!");
 
         // user input
         System.out.print("Enter coordinate 1: ");
@@ -24,16 +25,16 @@ public class LinearEquationRunner {
         int parse2X = Integer.parseInt(tempString);
         int parse2Y = Integer.parseInt(tempString2);
         if (parse1X == parse2X) {
-            System.out.println("These points are on a vertical line: x = " + parse1X);
+            System.out.println("\nThese points are on a vertical line: x = " + parse1X);
         } else {
+            // object creation
             LinearEquation linear1 = new LinearEquation(parse1X, parse1Y, parse2X, parse2Y);
 
             // return
             System.out.println(linear1.lineInfo());
             System.out.print("\nEnter a value for x: ");
-            String x = scan.nextLine();
-            double parsedX = Integer.parseInt(x);
-            System.out.println("\nThe point on the line is: " + linear1.coordinateForX(parsedX));
+            double x = scan.nextDouble();
+            System.out.println("\nThe point on the line is: " + linear1.coordinateForX(x));
         }
     }
 }
