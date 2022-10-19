@@ -17,6 +17,7 @@ public class LinearEquationRunner {
         int parse1Y = Integer.parseInt(tempString2);
         System.out.print("Enter coordinate 2: ");
         String cord2 = scan.nextLine();
+        totalInd = cord2.length();
         commaInd = cord2.indexOf(",");
         tempString = cord2.substring(1, commaInd);
         tempString2 = cord2.substring(commaInd + 2, totalInd - 1);

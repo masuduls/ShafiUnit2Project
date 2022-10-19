@@ -65,6 +65,7 @@ public class LinearEquation {
                subtraction!
      */
     public String equation() {
+        String linearEq = "y = ";
         return "y = " + ((y2 - y1) + "/" + (x2 - x1)) + "x + " + yIntercept();
     }
 
